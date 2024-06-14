@@ -7,4 +7,7 @@ public class Product : Entity
     public decimal Value { get; set; }
     public DateTime CreatedAt { get; set; }
     public bool IsEnabled { get; set; }
+
+    public Supplier? Supplier { get; set; }
+    public Guid SupplierId { get; set; }
 }
