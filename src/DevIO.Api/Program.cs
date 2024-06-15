@@ -1,7 +1,4 @@
-using DevIO.Business.Interfaces;
-using DevIO.Data.Context;
-using DevIO.Data.Repository;
-using Microsoft.EntityFrameworkCore;
+using DevIO.Api.Configurations;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,13 +9,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
-{
-    options.UseSqlServer(builder.Configuration.GetConnectionString("ConnectionStrings"));
-});
-
-builder.Services.AddScoped<IProductRepository, ProductRepository>();
-builder.Services.AddScoped<ISupplierRepository, SupplierRepository>();
+builder.Services.ResolveDependencies(builder.Configuration);
 
 var app = builder.Build();
 
